@@ -19,17 +19,14 @@ body {
 .wrapper {
     width: 100%;
     margin: 0px auto;
-    @include screen('mobile') {
-        background: #FFF;
-        overflow: hidden;
-        overflow-y: auto;
-    }
+    overflow: hidden;
+    
 }
 // 整體共用container樣式，請注意首頁切版頁面的整齊
 .container {
     padding: 0;
     margin: 0 auto;
-    width: $container-max; //請看_variable.scss
+    max-width: $container-max; //請看_variable.scss
 }
 .main {
     position: relative;

@@ -82,6 +82,7 @@ a.more {
         .search_group {
             flex: auto;
             flex-basis: calc(100% - 290px);
+            max-width: calc(100% - 290px);
             .search_link_group {
                 text-align: right;
                 padding: 5px 0 0;
