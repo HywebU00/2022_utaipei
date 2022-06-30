@@ -81,8 +81,8 @@ a.more {
         display: flex;
         .search_group {
             flex: auto;
-            flex-basis: calc(100% - 290px);
-            max-width: calc(100% - 290px);
+            // flex-basis: calc(100% - 290px);
+            // max-width: calc(100% - 290px);
             .search_link_group {
                 text-align: right;
                 padding: 5px 0 0;
@@ -163,7 +163,6 @@ a.more {
                     }
                     .btn_grp {
                         padding: 0;
-                        text-align: left;
                         display: flex;
                         align-items: center;
                         input {
@@ -183,6 +182,80 @@ a.more {
                                 }
                             }
                         }
+                    }
+                    ul {
+                        margin: 0 0 5px;
+                        padding: 0;
+                        list-style-type: none;
+                        font-size: 0.813em;
+                        display: flex;
+                        flex-wrap: wrap;
+                        li {
+                            border-bottom: 1px solid #ccc;
+                            align-items: top;
+                            flex: none;
+                            flex-basis: 47%;
+                            max-width: 47%;
+                            margin: 0 1.5%;
+                            position: relative;
+                            padding: 3px 0 3px 8px;
+                            line-height: 1.4em;
+                            &:before {
+                                content: '';
+                                width: 3px;
+                                height: 3px;
+                                border-radius: 50%;
+                                position: absolute;
+                                left: 0;
+                                top: 12px;
+                                background-color: #333;
+                            }
+                            a {
+                                color: #e59930;
+                                font-weight: bolder;
+                                &:hover {
+                                    color: #01a29a;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &.login_after {
+                flex-basis: 400px;
+                max-width: 400px;
+                margin-left: 40px;
+                .search_record_login {
+                    border-top: 5px solid $color-orange;
+                }
+                .name {
+                    font-size: 1em;
+                    padding: 0 0 0 25px;
+                    float: left;
+                    vertical-align: middle;
+                    background-image: url('../images/icon_man2.svg');
+                    background-repeat: no-repeat;
+                    background-position: 0 center;
+                    background-size: 18px;
+                    font-weight: bolder;
+                }
+                .sign_out {
+                    float: right;
+                    margin-right: 10px;
+                    vertical-align: middle;
+                    margin-top: -5px;
+                    .btn {
+                        padding: 0.2em 1.25em !important;
+                    }
+                }
+                .title {
+                    display: none;
+                }
+                .content {
+                    padding: 10px 5px;
+                    ul {
+                        clear: both;
+                        float: none;
                     }
                 }
             }
@@ -217,6 +290,9 @@ a.more {
                     color: #fff;
                     font-weight: bolder;
                     letter-spacing: 0.05em;
+                    a {
+                        color: #fff;
+                    }
                 }
             }
             .more {

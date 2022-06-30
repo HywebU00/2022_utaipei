@@ -93,9 +93,12 @@
 }
 // 
 .search_tabs {
-    background-color: #fff;
+    // background-color: #fff;
     .tabItem {
         background-color: $primaryColor;
+        padding-left: 25px;
+        padding-right: 25px;
+        border-right: 1px solid #fff;
         &.active {
             background-color: #fff;
             color: #000;
@@ -104,9 +107,13 @@
             background-color: #fff;
             color: #000;
         }
+        &:last-of-type {
+            border-right: none;
+        }
     }
     .tabContent {
         padding: 40px 20px 40px;
+        background-color: #fff;
         .searchcontent {
             display: flex;
             input {

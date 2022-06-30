@@ -69,23 +69,17 @@ $(function() {
         e.preventDefault();
     });
     // -------------------------------------------- overlay關閉選單
-    _overlay
-        .add(_sidebarClose)
-        .off()
-        .click(function() {
-            hideSidebar();
-        });
+    _overlay.add(_sidebarClose).off().click(function() {
+        hideSidebar();
+    });
     _overlay.off('mouseenter');
     // -------------------------------------------- 無障礙tab設定
     // -------------------------------------------- menu
     liHasChild.children('a').keyup(function() {
         $(this).siblings('ul').fadeIn();
-        $(this)
-            .parent('li')
-            .siblings()
-            .focus(function() {
-                $(this).hide();
-            });
+        $(this).parent('li').siblings().focus(function() {
+            $(this).hide();
+        });
     });
     _menu.find('li').keyup(function() {
         $(this).siblings().children('ul').hide();
@@ -97,23 +91,16 @@ $(function() {
     liHasChild2.children('a').keyup(function() {
         $(this).siblings('ul').fadeIn();
         $(this).siblings('ul').find('ul').fadeIn();
-        $(this)
-            .parent('li')
-            .siblings()
-            .focus(function() {
-                $(this).hide();
-            });
-    });
-    _megamenu
-        .children('ul')
-        .children('li')
-        .keyup(function() {
-            $(this).siblings().children('ul').hide();
+        $(this).parent('li').siblings().focus(function() {
+            $(this).hide();
         });
+    });
+    _megamenu.children('ul').children('li').keyup(function() {
+        $(this).siblings().children('ul').hide();
+    });
     _megamenu.find('li:last>a').focusout(function() {
         _menu.find('li ul').hide();
     });
-
     // 先複製過去
     _nav.clone().prependTo(_mArea);
     _menu.clone().prependTo(_mArea);
@@ -138,15 +125,12 @@ $(function() {
             menu_status = false;
             _sidebar.hide();
             _overlay.hide();
-            
-            
         } else {
             /*-----------------------------------*/
             /////////////// PC版設定 /////////////
             /*-----------------------------------*/
             hideSidebar();
             _body.removeClass('noscroll');
-            
             // 副選單滑出
             liHasChild.on({
                 mouseenter: function() {
@@ -183,8 +167,6 @@ $(function() {
                     },
                 });
             }
-            
-            
         }
     }
     //行動版/電腦版切換
@@ -287,7 +269,6 @@ $(function() {
         });
         stickyMegaNavBar();
     }
-
     /*-----------------------------------*/
     //////////// notice訊息區塊 ////////////
     /*-----------------------------------*/
@@ -317,19 +298,15 @@ $(function() {
     /////////////fatfooter開關/////////////
     /*-----------------------------------*/
     $('.btn-fatfooter').click(function(e) {
-        $(this)
-            .parent('.container')
-            .find('nav>ul>li>ul')
-            .stop(true, true)
-            .slideToggle(function() {
-                if ($(this).is(':visible')) {
-                    $('.btn-fatfooter').html('收合/CLOSE');
-                    $('.btn-fatfooter').attr('name', '收合選單/CLOSE');
-                } else {
-                    $('.btn-fatfooter').html('展開/OPEN');
-                    $('.btn-fatfooter').attr('name', '展開選單/OPEN');
-                }
-            });
+        $(this).parent('.container').find('nav>ul>li>ul').stop(true, true).slideToggle(function() {
+            if ($(this).is(':visible')) {
+                $('.btn-fatfooter').html('收合/CLOSE');
+                $('.btn-fatfooter').attr('name', '收合選單/CLOSE');
+            } else {
+                $('.btn-fatfooter').html('展開/OPEN');
+                $('.btn-fatfooter').attr('name', '展開選單/OPEN');
+            }
+        });
         $(this).stop(true, true).toggleClass('close');
     });
     /*-----------------------------------*/
@@ -355,23 +332,23 @@ $(function() {
                 tabwidth = _tab.width(),
                 tabItemHeight = _tabItem.outerHeight(),
                 tabContentHeight = _tab.find('.active').next().innerHeight(),
-                tiGap = 1,
+                tiGap = 0,
                 tabItemLength = _tabItem.length,
                 tabItemWidth;
             _tab.find('.active').next('.tabContent').show();
-              _tabContent.css('top', tabItemHeight);
-                _tab.height(tabContentHeight + tabItemHeight);
-                tabItemWidth = (tabwidth - (tabItemLength - 1) * tiGap) / tabItemLength;
-                _tabItem.width(tabItemWidth).css('margin-left', tiGap);
-                _tabItem.first().css('margin-left', 0);
-                _tabItem.last().css({ position: 'absolute', top: 0, right: 0 }).width(tabItemWidth);
+            _tabContent.css('top', tabItemHeight);
+            _tab.height(tabContentHeight + tabItemHeight);
+            // tabItemWidth = (tabwidth - (tabItemLength - 1) * tiGap) / tabItemLength;
+            _tabItem.width(tabItemWidth).css('margin-left', tiGap);
+            _tabItem.first().css('margin-left', 0);
+            // _tabItem.last().css({ position: 'absolute', top: 0, right: 0 }).width(tabItemWidth);
             if (ww >= wwSmall) {
                 _tabContent.css('top', tabItemHeight);
                 _tab.height(tabContentHeight + tabItemHeight);
-                tabItemWidth = (tabwidth - (tabItemLength - 1) * tiGap) / tabItemLength;
+                // tabItemWidth = (tabwidth - (tabItemLength - 1) * tiGap) / tabItemLength;
                 _tabItem.width(tabItemWidth).css('margin-left', tiGap);
                 _tabItem.first().css('margin-left', 0);
-                _tabItem.last().css({ position: 'absolute', top: 0, right: 0 }).width(tabItemWidth);
+                // _tabItem.last().css({ position: 'absolute', top: 0, right: 0 }).width(tabItemWidth);
             } else {
                 // _tab.css('height', 'auto');
                 // _tabItem.width(tabwidth);
@@ -400,6 +377,7 @@ $(function() {
             }
         });
     }
+
     function tabSet2() {
         $('.publications').each(function() {
             var _tab = $(this),
@@ -424,7 +402,7 @@ $(function() {
                 // _tabItem.width('auto').css('margin-left', tiGap);
                 // 
                 _tabItem.first().css('margin-left', 0);
-               _tabItem.last().css({ position: 'absolute', top: 0, right: 0 }).width(tabItemWidth);
+                _tabItem.last().css({ position: 'absolute', top: 0, right: 0 }).width(tabItemWidth);
             } else {
                 _tab.css('height', 'auto');
                 _tabItem.width(tabwidth);
@@ -464,7 +442,7 @@ $(function() {
     }
     $('.search_tabs>.tabItem:first-child>a').trigger('click');
     tabSet();
-     $('.publications>.tabItem:first-child>a').trigger('click');
+    $('.publications>.tabItem:first-child>a').trigger('click');
     tabSet2();
     /*-----------------------------------*/
     ///////////////置頂go to top////////////
@@ -479,13 +457,11 @@ $(function() {
     /*-----------------------------------*/
     /////click event to scroll to top//////
     /*-----------------------------------*/
-    $('.scrollToTop')
-        .off()
-        .click(function(e) {
-            $('html, body').stop().animate({ scrollTop: 0 }, 400, 'linear');
-            // $('a.goCenter').focus(); //加入這行
-            e.preventDefault();
-        });
+    $('.scrollToTop').off().click(function(e) {
+        $('html, body').stop().animate({ scrollTop: 0 }, 400, 'linear');
+        // $('a.goCenter').focus(); //加入這行
+        e.preventDefault();
+    });
     $('.scrollToTop').keydown(function(e) {
         $('html, body').stop().animate({ scrollTop: 0 }, 400, 'linear');
         _body.find('a.goCenter').focus();
@@ -518,11 +494,9 @@ $(function() {
     // $('input,textarea').focus(function() {
     //     $(this).removeAttr('placeholder');
     // });
-    $('input[type="checkbox"]')
-        .off()
-        .click(function(e) {
-            $(this).blur();
-        });
+    $('input[type="checkbox"]').off().click(function(e) {
+        $(this).blur();
+    });
     /*------------------------------------*/
     /////form表單 單個檔案上傳+多個檔案上傳/////
     /*------------------------------------*/
@@ -535,10 +509,7 @@ $(function() {
         // $('input[name=file]').val(names);
         if (length > 2) {
             var fileName = names.join(', ');
-            $(this)
-                .closest('.upload_grp')
-                .find('.upload_file')
-                .attr('value', length + ' files selected');
+            $(this).closest('.upload_grp').find('.upload_file').attr('value', length + ' files selected');
         } else {
             $(this).closest('.upload_grp').find('.upload_file').attr('value', names);
         }
@@ -556,11 +527,9 @@ $(function() {
     _shareButton.keyup(function(event) {
         $(this).siblings('ul').stop(true, true).slideDown();
     });
-    $('.function_panel .share')
-        .find('li:last>a')
-        .focusout(function(event) {
-            $(this).parent().parent('ul').hide();
-        });
+    $('.function_panel .share').find('li:last>a').focusout(function(event) {
+        $(this).parent().parent('ul').hide();
+    });
     // 點外面關閉share
     $(document).on('touchend click', function(e) {
         var container = $('.function_panel .share');
@@ -571,33 +540,27 @@ $(function() {
     /*------------------------------------*/
     /////////////字型大小 font-size//////////
     /*------------------------------------*/
-    $('.font_size')
-        .find('.small')
-        .click(function(e) {
-            $(this).parent('li').siblings('li').find('a').removeClass('active');
-            $('.innerpage').removeClass('large_size').addClass('small_size');
-            $(this).blur().addClass('active');
-            e.preventDefault();
-            createCookie('FontSize', 'small', 356);
-        });
-    $('.font_size')
-        .find('.medium')
-        .click(function(e) {
-            $(this).parent('li').siblings('li').find('a').removeClass('active');
-            $('.innerpage').removeClass('large_size small_size');
-            $(this).blur().addClass('active');
-            e.preventDefault();
-            createCookie('FontSize', 'medium', 356);
-        });
-    $('.font_size')
-        .find('.large')
-        .click(function(e) {
-            $(this).parent('li').siblings('li').find('a').removeClass('active');
-            $('.innerpage').removeClass('small_size').addClass('large_size');
-            $(this).blur().addClass('active');
-            e.preventDefault();
-            createCookie('FontSize', 'large', 356);
-        });
+    $('.font_size').find('.small').click(function(e) {
+        $(this).parent('li').siblings('li').find('a').removeClass('active');
+        $('.innerpage').removeClass('large_size').addClass('small_size');
+        $(this).blur().addClass('active');
+        e.preventDefault();
+        createCookie('FontSize', 'small', 356);
+    });
+    $('.font_size').find('.medium').click(function(e) {
+        $(this).parent('li').siblings('li').find('a').removeClass('active');
+        $('.innerpage').removeClass('large_size small_size');
+        $(this).blur().addClass('active');
+        e.preventDefault();
+        createCookie('FontSize', 'medium', 356);
+    });
+    $('.font_size').find('.large').click(function(e) {
+        $(this).parent('li').siblings('li').find('a').removeClass('active');
+        $('.innerpage').removeClass('small_size').addClass('large_size');
+        $(this).blur().addClass('active');
+        e.preventDefault();
+        createCookie('FontSize', 'large', 356);
+    });
 
     function createCookie(name, value, days) {
         if (days) {
@@ -647,13 +610,10 @@ $(function() {
     /*-----------------------------------*/
     /////////// category active  //////////
     /*-----------------------------------*/
-    $('.category')
-        .find('a')
-        .off()
-        .click(function(event) {
-            $(this).parent('li').siblings().find('a').removeClass('active');
-            $(this).addClass('active').blur();
-        });
+    $('.category').find('a').off().click(function(event) {
+        $(this).parent('li').siblings().find('a').removeClass('active');
+        $(this).addClass('active').blur();
+    });
     /*-----------------------------------*/
     /////////// 無障礙快捷鍵盤組合  //////////
     /*-----------------------------------*/
@@ -670,16 +630,12 @@ $(function() {
         }
         // alt+C 主要內容區
         if (e.altKey && e.keyCode == 67) {
-            $('html, body')
-                .stop(true, true)
-                .animate({ scrollTop: $('.main').find('.accesskey').offset().top - 70 }, 800, 'easeOutExpo');
+            $('html, body').stop(true, true).animate({ scrollTop: $('.main').find('.accesskey').offset().top - 70 }, 800, 'easeOutExpo');
             $('.main').find('.accesskey').focus();
         }
         // alt+Z footer
         if (e.altKey && e.keyCode == 90) {
-            $('html, body')
-                .stop(true, true)
-                .animate({ scrollTop: $('footer').find('.accesskey').offset().top }, 800, 'easeOutExpo');
+            $('html, body').stop(true, true).animate({ scrollTop: $('footer').find('.accesskey').offset().top }, 800, 'easeOutExpo');
             $('footer').find('.accesskey').focus();
         }
     });
@@ -713,9 +669,7 @@ $(function() {
     $('a.goCenter').keydown(function(e) {
         if (e.which == 13) {
             $('#aC').focus();
-            $('html, body')
-                .stop(true, true)
-                .animate({ scrollTop: $('.main').find('.accesskey').offset().top }, 800, 'easeOutExpo');
+            $('html, body').stop(true, true).animate({ scrollTop: $('.main').find('.accesskey').offset().top }, 800, 'easeOutExpo');
         }
     });
     /*-----------------------------------*/
@@ -730,11 +684,9 @@ $(function() {
     openLang.keyup(function() {
         $(this).next('ul').stop(true, true).slideDown();
     });
-    $('.language')
-        .find('ul li:last>a')
-        .focusout(function() {
-            $('.language').find('ul').hide();
-        });
+    $('.language').find('ul li:last>a').focusout(function() {
+        $('.language').find('ul').hide();
+    });
     $(document).on('touchend click', function(e) {
         var target = e.target;
         if (!$(target).is('.language a')) {
@@ -746,11 +698,7 @@ $(function() {
     // /*------------------------------------*/
     $('table').each(function(index, el) {
         //判斷沒有table_list
-        if (
-            $(this).parents('.table_list').length == 0 &&
-            $(this).parents('.fix_th_table').length == 0 &&
-            $(this).parent('form').length == 0
-        ) {
+        if ($(this).parents('.table_list').length == 0 && $(this).parents('.fix_th_table').length == 0 && $(this).parent('form').length == 0) {
             $(this).scroltable();
         }
     });
@@ -759,25 +707,15 @@ $(function() {
     $('.scroltable-nav-right').append('<div class="tablearrow_right"  style="display:none;"></div>');
     // 固定版頭
     function table_Arrow() {
-        if (
-            $('table').parents('.table_list').length == 0 &&
-            $('table').parents('.fix_th_table').length == 0 &&
-            $(this).parent('form').length == 0
-        ) {
+        if ($('table').parents('.table_list').length == 0 && $('table').parents('.fix_th_table').length == 0 && $(this).parent('form').length == 0) {
             if ($('.scroltable-wrapper').length > 0) {
                 var stickyArrowTop = Math.floor($('.scroltable-wrapper').offset().top),
                     thisScroll = Math.floor($(this).scrollTop());
                 if (thisScroll > stickyArrowTop - 230) {
                     $('.scroltable-wrapper .tablearrow_left').css('display', 'block');
-                    $('.scroltable-wrapper .tablearrow_left').css({ top: thisScroll - stickyArrowTop + 220 },
-                        100,
-                        'easeOutQuint'
-                    );
+                    $('.scroltable-wrapper .tablearrow_left').css({ top: thisScroll - stickyArrowTop + 220 }, 100, 'easeOutQuint');
                     $('.scroltable-wrapper .tablearrow_right').css('display', 'block');
-                    $('.scroltable-wrapper .tablearrow_right').css({ top: thisScroll - stickyArrowTop + 220 },
-                        100,
-                        'easeOutQuint'
-                    );
+                    $('.scroltable-wrapper .tablearrow_right').css({ top: thisScroll - stickyArrowTop + 220 }, 100, 'easeOutQuint');
                 } else {
                     $('.scroltable-wrapper .tablearrow_left').css({
                         top: '10px',
@@ -805,20 +743,16 @@ $(function() {
     // //////////table 加上 data-title//////////
     // /*------------------------------------*/
     function rwdTable() {
-        $('.table_list')
-            .find('table')
-            .each(function() {
-                var $row = $(this).find('tr');
-                rowCount = $row.length;
-                for (var n = 1; n <= rowCount; n++) {
-                    $(this)
-                        .find('th')
-                        .each(function(index) {
-                            var thText = $(this).text();
-                            $row.eq(n).find('td').eq(index).attr('data-title', thText);
-                        });
-                }
-            });
+        $('.table_list').find('table').each(function() {
+            var $row = $(this).find('tr');
+            rowCount = $row.length;
+            for (var n = 1; n <= rowCount; n++) {
+                $(this).find('th').each(function(index) {
+                    var thText = $(this).text();
+                    $row.eq(n).find('td').eq(index).attr('data-title', thText);
+                });
+            }
+        });
     }
     rwdTable();
     /*-----------------------------------*/
